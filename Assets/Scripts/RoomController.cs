@@ -20,7 +20,7 @@ public class RoomController : MonoBehaviour
         dg = GameObject.FindGameObjectWithTag("DungeonController").GetComponent<DungeonGenerator>();
         minSize = dg.roomMinSize;
         maxSize = dg.roomMaxSize;
-        Create();
+        //Create();
     }
 
     // Update is called once per frame
@@ -29,23 +29,15 @@ public class RoomController : MonoBehaviour
         
     }
 
-    public void Create()
+    public void Create(Room room)
     {
-        switch (Random.Range(0, 10))
+        // add gameobject tiles for every roomtile
+        foreach (var tile in room.tiles)
         {
-            case 0:
-                CreateRectangle();
-                break;
-            case 1:
-                Debug.Log("Room 1");
-                break;
-            case 2:
-                Debug.Log("Room 2");
-                break;
-            default:
-                Debug.Log("Room other");
-                CreateRectangle();
-                break;
+            Vector3 coord = new Vector3(tile.coord.x, tile.coord.y);
+            //Debug.Log("Creating tile at " + coord);
+            var go = Instantiate(floorTiles[0], transform, false);
+            go.transform.Translate(coord, Space.Self);
         }
     }
 
@@ -57,27 +49,5 @@ public class RoomController : MonoBehaviour
             coords.Add(transform.position);
         }
         return coords;
-    }
-
-    // returns array of Vector2 containing coords of tiles
-    private void CreateRectangle()
-    {
-        // Make a randomly-sized room but keep the aspect ratio reasonable.
-        int shortSide = Random.Range(minSize, 10);
-        int longSide = Random.Range(shortSide, Mathf.Min(maxSize, shortSide + 4));
-
-        bool horizontal = Utilities.OneIn(2);
-        int width = horizontal ? longSide : shortSide;
-        int height = horizontal ? shortSide : longSide;
-
-        // add a floor tile for each coord in this room
-        for (int y = 0; y < height; y++)
-        {
-            for (int x = 0; x < width; x++)
-            {
-                var tile = GameObject.Instantiate(floorTiles[0], new Vector3(x, y), Quaternion.identity, transform);
-            }
-        }
-        
     }
 }
