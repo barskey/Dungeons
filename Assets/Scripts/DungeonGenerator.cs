@@ -47,15 +47,13 @@ public class DungeonGenerator : MonoBehaviour
     /// dungeons.
     public int extraConnectorChance = 20;
 
-    /// Increasing this allows rooms to be larger.
-    public int roomExtraSize = 0;
-
     public int windingPercent = 0;
 
     private Tile[,] dungeonTiles;
+
     // For each position in the dungeon, the index of the connected region that position is a part of
     private int[,] regions;
-    private int currentRegion = 1; // the index of the current region being carved
+    private int currentRegion = -1; // the index of the current region being carved
 
     // Start is called before the first frame update
     void Start()
@@ -79,17 +77,25 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int x = 0; x < levelWidth; x++)
             {
+                // TODO should we add region here, or keep default -1?
+                Tile tile = new Tile
+                {
+                    coord = new Vector2Int(x, y)
+                };
                 if (y == 0 || y == levelHeight - 1)
                 {
-                    dungeonTiles[x, y] = new Tile { type = TileType.Wall };
+                    tile.type = TileType.Wall;
+                    dungeonTiles[x, y] = tile;
                 }
-                else if (x == 0 || x == levelWidth - 1)
+                else if (x == 0 || x == levelWidth - 1) 
                 {
-                    dungeonTiles[x, y] = new Tile { type = TileType.Wall };
+                    tile.type = TileType.Wall;
+                    dungeonTiles[x, y] = tile;
                 }
                 else
                 {
-                    dungeonTiles[x, y] = new Tile { type = TileType.Unused };
+                    tile.type = TileType.Unused;
+                    dungeonTiles[x, y] = tile;
                 }
             }
         }
@@ -131,11 +137,14 @@ public class DungeonGenerator : MonoBehaviour
                 var pos = new Vector2Int(x, y);
                 if (dungeonTiles[x,y].type == TileType.Unused)
                 {
-                    Debug.Log("growMaze:" + pos);
+                    //Debug.Log("growMaze:" + pos);
                     GrowMaze(pos);
                 }
             }
         }
+
+        ConnectRegions();
+        /*
         for (int i = 0; i < regions.GetLength(0); i++)
         {
             for (int j = 0; j < regions.GetLength(1); j++)
@@ -143,6 +152,7 @@ public class DungeonGenerator : MonoBehaviour
                 Debug.Log("x:" + i + " y:" + j + " " + regions[i, j]);
             }
         }
+        */
     }
 
     private void AddRooms()
@@ -196,62 +206,118 @@ public class DungeonGenerator : MonoBehaviour
         Debug.Log("AddRooms completed in " + timeTaken + "s.");
     }
 
-    /*
     private void ConnectRegions()
     {
         // find all the tiles that can connect two or more regions
         Dictionary<Vector2Int, HashSet<int>> connectorRegions = new Dictionary<Vector2Int, HashSet<int>>();
-        foreach (var pos in dungeonTiles) // TODO inflate(-1) means grow by 1?
+        foreach (var tile in dungeonTiles)
         {
             // can't already be part of a region
-            if (dungeonTiles[pos.coord.x, pos.coord.y].type != TileType.Wall) continue;
+            if (dungeonTiles[tile.coord.x, tile.coord.y].type != TileType.Unused) continue;
 
             HashSet<int> _regions = new HashSet<int>();
             foreach (var dir in Utilities.directions)
             {
-                Vector2Int newPos = pos.coord + dir;
-                int _region = regions[newPos.x, newPos.y];
-                if (_region != 0) _regions.Add(_region);
+                Vector2Int newPos = tile.coord + dir;
+                if (newPos.x >= 0 && newPos.x < regions.GetUpperBound(0) && newPos.y >= 0 && newPos.y < regions.GetUpperBound(1))
+                {
+                    int _region = regions[newPos.x, newPos.y];
+                    if (_region >= 0) _regions.Add(_region);
+                }
             }
-
             if (_regions.Count < 2) continue;
-
-            connectorRegions[pos.coord] = _regions;
+            connectorRegions[tile.coord] = _regions;
         }
 
-        var connectors = connectorRegions.Keys.ToList();
+        var connectorTiles = connectorRegions.Keys.ToList();
+
         // Keep track of which regions have been merged. This maps an original
         // region index to the one it has been merged to.
-        var merged = new Hashtable();
+        var merged = new Dictionary<int, int>();
         var openRegions = new HashSet<int>();
-        for (int i = 0; i < currentRegion; i++)
+        for (int i = 0; i <= currentRegion; i++)
         {
             merged[i] = i;
-            openRegions.Add(i);
+            openRegions.Add(i); // they're all open so far
         }
 
         // Keep connecting regions until we're down to one.
         while (openRegions.Count > 1)
         {
             // grab a random connector from our list
-            var rand = Random.Range(0, connectors.Count);
-            var connector = connectors[rand];
-            connectors.RemoveAt(rand);
+            var rand = Random.Range(0, connectorTiles.Count - 1);
+            var connector = connectorTiles.ElementAt(rand);
+            connectorTiles.Remove(connector); // and remove it
 
             // carve the connection
-            //addJunction(connector);
+            AddJunction(connector);
 
-            // Merge the connected regions. We'll pick one region (arbitrarily) and
-            // map all of the other regions to its index.
-            // sb: TODO brute force this until I figure out a better way to map
-            foreach (var c in connectorRegions[connector])
+            // Merge the connected regions
+            var _regions = new HashSet<int>(connectorRegions[connector]); // regions this connector is joining
+            var mergeTo = _regions.First(); // use the first region to keep
+            List<int> sources = _regions.Skip(1).ToList(); // put the rest of the regions into a list
+
+            // Merge all of the affected regions. We have to look at *all* of the
+            // regions because other regions may have previously been merged with
+            // some of the ones we're merging now.
+            for (var i = 0; i <= currentRegion; i++)
             {
-                merged[c] = c;
+                if (sources.Contains(merged[i]))
+                {
+                    merged[i] = mergeTo;
+                }
             }
-            var dest = regions[0];
+
+            // update the connected regions with merged regions
+            foreach (KeyValuePair<Vector2Int, HashSet<int>> item in connectorRegions)
+            {
+                connectorRegions[item.Key] = new HashSet<int>(connectorRegions[item.Key].Select(r => r = merged[r]));
+            }
+
+            // remove the sources since they are no longer in use
+            foreach (var source in sources) openRegions.Remove(source);
+
+            // Remove any connectors that aren't needed anymore.
+            // Don't allow connectors right next to each other.
+            connectorTiles.RemoveAll(pos => (connector - pos).sqrMagnitude < 2);
+            // If the connector no longer spans different regions, we don't need it.
+            var toRemove = new List<Vector2Int>();
+            foreach (var tile in connectorTiles)
+            {
+                var regions = new HashSet<int>(connectorRegions[tile]);
+                if (regions.Count <= 1)
+                {
+                    toRemove.Add(tile);
+                }
+                else
+                {
+                    if (Utilities.OneIn(extraConnectorChance)) AddJunction(tile);
+                    toRemove.Add(tile);
+                }
+            }
+            foreach (var item in toRemove)
+            {
+                connectorTiles.Remove(item);
+            }
         }
     }
-    */
+
+    void AddJunction(Vector2Int pos)
+    {
+        TileType type;
+        if (Utilities.OneIn(4))
+        {
+            type = Utilities.OneIn(3) ? TileType.OpenDoor : TileType.Floor;
+        }
+        else
+        {
+            type = TileType.ClosedDoor;
+        }
+        dungeonTiles[pos.x, pos.y].type = type;
+        Instantiate(levelWall, new Vector3(pos.x, pos.y), Quaternion.identity, transform);
+        //Debug.Log("Juction added at " + pos + " type " + type);
+    }
+
 
     /// Implementation of the "growing tree" algorithm from here:
     /// http://www.astrolog.org/labyrnth/algrithm.htm.
@@ -323,12 +389,12 @@ public class DungeonGenerator : MonoBehaviour
         {
             return false;
         }
-        if (endPos.x < 1 || endPos.y < 1)
+        if (endPos.x < 0 || endPos.y < 0)
         {
             return false;
         }
 
-        // Destination must not be open.
+        // Destination must not be unused.
         Vector2Int openPos = pos + direction * 2;
         return dungeonTiles[openPos.x, openPos.y].type == TileType.Unused;
     }
@@ -340,9 +406,10 @@ public class DungeonGenerator : MonoBehaviour
 
     private void Carve(Vector2Int pos, TileType type = TileType.Floor)
     {
-        Debug.Log("Carving:" + pos);
+        //Debug.Log("Carving:" + pos);
         dungeonTiles[pos.x, pos.y].type = type;
         regions[pos.x, pos.y] = currentRegion;
+        dungeonTiles[pos.x, pos.y].region = currentRegion;
         // debug: instantiate tile so we cal see
         Instantiate(levelWall, new Vector3(pos.x, pos.y), Quaternion.identity, transform);
     }

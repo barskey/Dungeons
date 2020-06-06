@@ -6,7 +6,8 @@ public enum TileType
 {
     Floor,
     Wall,
-    Door,
+    OpenDoor,
+    ClosedDoor,
     Unused
 }
 
@@ -24,6 +25,7 @@ public class Tile
 {
     public TileType type = TileType.Unused;
     public Vector2Int coord;
+    public int region = -1;
 }
 
 public class Room
