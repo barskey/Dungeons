@@ -77,7 +77,6 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int x = 0; x < levelWidth; x++)
             {
-                // TODO should we add region here, or keep default -1?
                 Tile tile = new Tile
                 {
                     coord = new Vector2Int(x, y)
@@ -97,6 +96,7 @@ public class DungeonGenerator : MonoBehaviour
                     tile.type = TileType.Unused;
                     dungeonTiles[x, y] = tile;
                 }
+                regions[x, y] = -1;
             }
         }
     }
@@ -144,15 +144,19 @@ public class DungeonGenerator : MonoBehaviour
         }
 
         ConnectRegions();
+
         /*
-        for (int i = 0; i < regions.GetLength(0); i++)
+        for (int y = 0; y < regions.GetLength(1); y++)
         {
-            for (int j = 0; j < regions.GetLength(1); j++)
+            string r = "";
+            for (int x = 0; x < regions.GetLength(0); x++)
             {
-                Debug.Log("x:" + i + " y:" + j + " " + regions[i, j]);
+                r += regions[x, y].ToString();
             }
+            Debug.Log(r);
         }
         */
+        
     }
 
     private void AddRooms()
@@ -253,9 +257,13 @@ public class DungeonGenerator : MonoBehaviour
             AddJunction(connector);
 
             // Merge the connected regions
-            var _regions = new HashSet<int>(connectorRegions[connector]); // regions this connector is joining
-            var mergeTo = _regions.First(); // use the first region to keep
-            List<int> sources = _regions.Skip(1).ToList(); // put the rest of the regions into a list
+            var mapRegions = new HashSet<int>();
+            foreach (var r in new HashSet<int>(connectorRegions[connector]))
+            {
+                mapRegions.Add(merged[r]);
+            }
+            var mergeTo = mapRegions.First(); // use the first region to keep
+            List<int> sources = mapRegions.Skip(1).ToList(); // put the rest of the regions into a list
 
             // Merge all of the affected regions. We have to look at *all* of the
             // regions because other regions may have previously been merged with
@@ -268,12 +276,6 @@ public class DungeonGenerator : MonoBehaviour
                 }
             }
 
-            // update the connected regions with merged regions
-            foreach (KeyValuePair<Vector2Int, HashSet<int>> item in connectorRegions)
-            {
-                connectorRegions[item.Key] = new HashSet<int>(connectorRegions[item.Key].Select(r => r = merged[r]));
-            }
-
             // remove the sources since they are no longer in use
             foreach (var source in sources) openRegions.Remove(source);
 
@@ -281,13 +283,23 @@ public class DungeonGenerator : MonoBehaviour
             // Don't allow connectors right next to each other.
             connectorTiles.RemoveAll(pos => (connector - pos).sqrMagnitude < 2);
             // If the connector no longer spans different regions, we don't need it.
+            var test = connectorTiles.Select(pos => connectorRegions[pos]);
             var toRemove = new List<Vector2Int>();
+            int setcount=0;
+            int regcount=0;
             foreach (var tile in connectorTiles)
             {
-                var regions = new HashSet<int>(connectorRegions[tile]);
-                if (regions.Count <= 1)
+                var _mapRegions = new HashSet<int>();
+                foreach (var r in new HashSet<int>(connectorRegions[tile]))
+                {
+                    _mapRegions.Add(merged[r]);
+                    setcount++;
+                }
+
+                if (_mapRegions.Count <= 1)
                 {
                     toRemove.Add(tile);
+                    regcount++;
                 }
                 else
                 {
