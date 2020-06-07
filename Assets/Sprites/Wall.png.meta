@@ -2790,7 +2790,7 @@ TextureImporter:
       name: Wall_02_TN
       rect:
         serializedVersion: 2
-        x: 65
+        x: 64
         y: 752
         width: 16
         height: 16
@@ -3105,7 +3105,7 @@ TextureImporter:
       name: Wall_02_TE
       rect:
         serializedVersion: 2
-        x: 81
+        x: 80
         y: 736
         width: 16
         height: 16
@@ -3882,7 +3882,7 @@ TextureImporter:
       name: Wall_03_TW
       rect:
         serializedVersion: 2
-        x: 49
+        x: 48
         y: 688
         width: 16
         height: 16

@@ -109,10 +109,10 @@ TextureImporter:
     second: Floor02_NE
   - first:
       213: -879232731929094708
-    second: Floor02_SN
+    second: Floor02_S_N
   - first:
       213: 6489864180370008340
-    second: Floor02_SF
+    second: Floor02_S_4
   - first:
       213: -3645624477512422842
     second: Floor_37
@@ -154,16 +154,16 @@ TextureImporter:
     second: Floor02_E
   - first:
       213: -5670544904508827965
-    second: Floor02_SC
+    second: Floor02_S_NS
   - first:
       213: -2025104430794894222
-    second: Floor_51
+    second: Floor02_S_W
   - first:
       213: -5819320140040126303
-    second: Floor_52
+    second: Floor02_S_WE
   - first:
       213: -7079682232588083840
-    second: Floor_53
+    second: Floor02_S_E
   - first:
       213: 4751603284669638593
     second: Floor_54
@@ -217,7 +217,7 @@ TextureImporter:
     second: Floor02_SE
   - first:
       213: -7643733788334918545
-    second: Floor02_SS
+    second: Floor02_S_S
   - first:
       213: 1373668780017302530
     second: Floor_72
@@ -253,10 +253,10 @@ TextureImporter:
     second: Floor03_NE
   - first:
       213: -2796213752557943756
-    second: Floor03_SN
+    second: Floor03_S_N
   - first:
       213: 3392086541811107891
-    second: Floor03_SF
+    second: Floor03_S_4
   - first:
       213: 2652323524078122198
     second: Floor_85
@@ -298,16 +298,16 @@ TextureImporter:
     second: Floor03_E
   - first:
       213: 7290447840035754938
-    second: Floor03_SC
+    second: Floor03_S_NS
   - first:
       213: 2265769400650384029
-    second: Floor_99
+    second: Floor03_S_W
   - first:
       213: -1719989770086333696
-    second: Floor_100
+    second: Floor03_S_WE
   - first:
       213: -2000838227958116333
-    second: Floor_101
+    second: Floor03_S_E
   - first:
       213: 8124958032440468516
     second: Floor_102
@@ -361,7 +361,7 @@ TextureImporter:
     second: Floor03_SE
   - first:
       213: 5103267866997794584
-    second: Floor03_SS
+    second: Floor03_S_S
   - first:
       213: -3861107029938521231
     second: Floor_120
@@ -2298,7 +2298,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor02_SN
+      name: Floor02_S_N
       rect:
         serializedVersion: 2
         x: 48
@@ -2319,7 +2319,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor02_SF
+      name: Floor02_S_4
       rect:
         serializedVersion: 2
         x: 80
@@ -2613,7 +2613,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor02_SC
+      name: Floor02_S_NS
       rect:
         serializedVersion: 2
         x: 48
@@ -2634,7 +2634,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor_51
+      name: Floor02_S_W
       rect:
         serializedVersion: 2
         x: 64
@@ -2655,7 +2655,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor_52
+      name: Floor02_S_WE
       rect:
         serializedVersion: 2
         x: 80
@@ -2676,7 +2676,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor_53
+      name: Floor02_S_E
       rect:
         serializedVersion: 2
         x: 96
@@ -3054,7 +3054,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor02_SS
+      name: Floor02_S_S
       rect:
         serializedVersion: 2
         x: 48
@@ -3306,7 +3306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor03_SN
+      name: Floor03_S_N
       rect:
         serializedVersion: 2
         x: 48
@@ -3327,7 +3327,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor03_SF
+      name: Floor03_S_4
       rect:
         serializedVersion: 2
         x: 80
@@ -3621,7 +3621,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor03_SC
+      name: Floor03_S_NS
       rect:
         serializedVersion: 2
         x: 48
@@ -3642,7 +3642,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor_99
+      name: Floor03_S_W
       rect:
         serializedVersion: 2
         x: 64
@@ -3663,7 +3663,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor_100
+      name: Floor03_S_WE
       rect:
         serializedVersion: 2
         x: 80
@@ -3684,7 +3684,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor_101
+      name: Floor03_S_E
       rect:
         serializedVersion: 2
         x: 96
@@ -4062,7 +4062,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Floor03_SS
+      name: Floor03_S_S
       rect:
         serializedVersion: 2
         x: 48

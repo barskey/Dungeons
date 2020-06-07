@@ -12,7 +12,7 @@ public class TileSet : ScriptableObject
     public Sprite wall_LSW;
     public Sprite wall_LSE;
     public Sprite wall_oCross;
-    public Sprite wallT_TN;
+    public Sprite wall_TN;
     public Sprite wall_TW;
     public Sprite wall_TS;
     public Sprite wall_TE;
@@ -29,9 +29,12 @@ public class TileSet : ScriptableObject
     public Sprite floor_S;
     public Sprite floor_SE;
 
-    public Sprite floor_SN;
-    public Sprite floor_SC;
-    public Sprite floor_SS;
-    public Sprite floor_SF;
+    public Sprite floorS_N;
+    public Sprite floorS_NS;
+    public Sprite floorS_S;
+    public Sprite floorS_W;
+    public Sprite floorS_WE;
+    public Sprite floorS_E;
+    public Sprite floorS_4;
 
 }

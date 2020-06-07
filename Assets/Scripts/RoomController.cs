@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
-    public GameObject[] floorTiles;
-    public GameObject[] wallTiles;
-    public GameObject[] doorTiles;
-
     public List<Vector2Int> tileCoords = new List<Vector2Int>();
 
     private int minSize;

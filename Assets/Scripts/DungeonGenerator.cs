@@ -93,7 +93,7 @@ public class DungeonGenerator : MonoBehaviour
                 }
                 else
                 {
-                    tile.type = TileType.Unused;
+                    tile.type = TileType.Wall;
                     dungeonTiles[x, y] = tile;
                 }
                 regions[x, y] = -1;
@@ -123,7 +123,7 @@ public class DungeonGenerator : MonoBehaviour
     ///    repeatedly filling in any open tile that's closed on three sides. When
     ///    this is done, every corridor in a maze actually leads somewhere.
     ///
-    /// The end result of this is a multiply-connected dungeon with rooms and lots
+    /// The end result of this is a multiple-connected dungeon with rooms and lots
     /// of winding corridors.
     public void Generate()
     {
@@ -138,11 +138,10 @@ public class DungeonGenerator : MonoBehaviour
             for (var x = 1; x < levelWidth; x += 2)
             {
                 var pos = new Vector2Int(x, y);
-                if (dungeonTiles[x,y].type == TileType.Unused)
-                {
-                    //Debug.Log("growMaze:" + pos);
-                    GrowMaze(pos);
-                }
+                if (dungeonTiles[x, y].type != TileType.Wall) continue;
+
+                //Debug.Log("growMaze:" + pos);
+                GrowMaze(pos);
             }
         }
         var mazeTime = Time.realtimeSinceStartup - roomTime - timeStart;
@@ -274,19 +273,20 @@ public class DungeonGenerator : MonoBehaviour
         foreach (var tile in dungeonTiles)
         {
             // can't already be part of a region
-            if (dungeonTiles[tile.coord.x, tile.coord.y].type != TileType.Unused) continue;
+            if (dungeonTiles[tile.coord.x, tile.coord.y].type != TileType.Wall) continue;
 
             HashSet<int> _regions = new HashSet<int>();
             foreach (var dir in Utilities.directions)
             {
                 Vector2Int newPos = tile.coord + dir;
-                if (newPos.x >= 0 && newPos.x < regions.GetUpperBound(0) && newPos.y >= 0 && newPos.y < regions.GetUpperBound(1))
+                if (newPos.x >= 0 && newPos.x < levelWidth && newPos.y >= 0 && newPos.y < levelHeight)
                 {
                     int _region = regions[newPos.x, newPos.y];
                     if (_region >= 0) _regions.Add(_region);
                 }
             }
             if (_regions.Count < 2) continue;
+
             connectorRegions[tile.coord] = _regions;
         }
 
@@ -308,7 +308,7 @@ public class DungeonGenerator : MonoBehaviour
         while (openRegions.Count > 1)
         {
             // grab a random connector from our list
-            var rand = Random.Range(0, connectorTiles.Count - 1);
+            var rand = Random.Range(0, connectorTiles.Count);
             var randConnector = connectorTiles.ElementAt(rand);
             connectorTiles.Remove(randConnector); // and remove it
 
@@ -430,7 +430,7 @@ public class DungeonGenerator : MonoBehaviour
                 var neighborCoord = tile.coord + Utilities.directions[i];
                 if (neighborCoord.x < 0 || neighborCoord.x >= levelWidth || neighborCoord.y < 0 || neighborCoord.y >= levelHeight)
                 {
-                    neighbor = new Tile();
+                    neighbor = new Tile { type = TileType.Void };
                 }
                 else
                 {
@@ -482,7 +482,7 @@ public class DungeonGenerator : MonoBehaviour
 
         // Destination must not be unused.
         Vector2Int openPos = pos + direction * 2;
-        return dungeonTiles[openPos.x, openPos.y].type == TileType.Unused;
+        return dungeonTiles[openPos.x, openPos.y].type == TileType.Wall;
     }
 
     private void StartRegion()

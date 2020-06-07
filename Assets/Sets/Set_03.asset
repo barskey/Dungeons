@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66754fcda8cd24c7eb27c3f8ebf6b63d, type: 3}
-  m_Name: Set_02
+  m_Name: Set_03
   m_EditorClassIdentifier: 
-  setName: 
+  setName: Set_03
   wall_LNW: {fileID: 4858603724635080666, guid: 179e223dfefcc4667a0fa60d600c17e3,
     type: 3}
   wall_NS: {fileID: -1273243830179989173, guid: 179e223dfefcc4667a0fa60d600c17e3,
     type: 3}
-  wall_LNE: {fileID: 4858603724635080666, guid: 179e223dfefcc4667a0fa60d600c17e3,
+  wall_LNE: {fileID: -2895823678632756545, guid: 179e223dfefcc4667a0fa60d600c17e3,
     type: 3}
   wall_WE: {fileID: -2354580212798404413, guid: 179e223dfefcc4667a0fa60d600c17e3,
     type: 3}
@@ -27,7 +27,7 @@ MonoBehaviour:
     type: 3}
   wall_oCross: {fileID: -7380741177489364937, guid: 179e223dfefcc4667a0fa60d600c17e3,
     type: 3}
-  wallT_TN: {fileID: -8870372030223932829, guid: 179e223dfefcc4667a0fa60d600c17e3,
+  wall_TN: {fileID: -8870372030223932829, guid: 179e223dfefcc4667a0fa60d600c17e3,
     type: 3}
   wall_TW: {fileID: -781091563230276770, guid: 179e223dfefcc4667a0fa60d600c17e3, type: 3}
   wall_TS: {fileID: 7119921668171802988, guid: 179e223dfefcc4667a0fa60d600c17e3, type: 3}
@@ -39,7 +39,8 @@ MonoBehaviour:
   floor_NW: {fileID: 1381528510163962405, guid: 89ffd26ced9ef4fac812304f4164bf37,
     type: 3}
   floor_N: {fileID: 3407696822135043392, guid: 89ffd26ced9ef4fac812304f4164bf37, type: 3}
-  floor_NE: {fileID: 298876309034902563, guid: 89ffd26ced9ef4fac812304f4164bf37, type: 3}
+  floor_NE: {fileID: -2158384002624678343, guid: 89ffd26ced9ef4fac812304f4164bf37,
+    type: 3}
   floor_W: {fileID: -1657038677086625927, guid: 89ffd26ced9ef4fac812304f4164bf37,
     type: 3}
   floor_C: {fileID: -498786115923219060, guid: 89ffd26ced9ef4fac812304f4164bf37, type: 3}
@@ -48,11 +49,17 @@ MonoBehaviour:
   floor_S: {fileID: 1488450051862096703, guid: 89ffd26ced9ef4fac812304f4164bf37, type: 3}
   floor_SE: {fileID: -2326640580971484003, guid: 89ffd26ced9ef4fac812304f4164bf37,
     type: 3}
-  floor_SN: {fileID: -2796213752557943756, guid: 89ffd26ced9ef4fac812304f4164bf37,
+  floorS_N: {fileID: -2796213752557943756, guid: 89ffd26ced9ef4fac812304f4164bf37,
     type: 3}
-  floor_SC: {fileID: 7290447840035754938, guid: 89ffd26ced9ef4fac812304f4164bf37,
+  floorS_NS: {fileID: 7290447840035754938, guid: 89ffd26ced9ef4fac812304f4164bf37,
     type: 3}
-  floor_SS: {fileID: 5103267866997794584, guid: 89ffd26ced9ef4fac812304f4164bf37,
+  floorS_S: {fileID: 5103267866997794584, guid: 89ffd26ced9ef4fac812304f4164bf37,
     type: 3}
-  floor_SF: {fileID: 3392086541811107891, guid: 89ffd26ced9ef4fac812304f4164bf37,
+  floorS_W: {fileID: 2265769400650384029, guid: 89ffd26ced9ef4fac812304f4164bf37,
+    type: 3}
+  floorS_WE: {fileID: -1719989770086333696, guid: 89ffd26ced9ef4fac812304f4164bf37,
+    type: 3}
+  floorS_E: {fileID: -2000838227958116333, guid: 89ffd26ced9ef4fac812304f4164bf37,
+    type: 3}
+  floorS_4: {fileID: 3392086541811107891, guid: 89ffd26ced9ef4fac812304f4164bf37,
     type: 3}

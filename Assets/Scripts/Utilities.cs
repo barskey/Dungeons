@@ -8,7 +8,8 @@ public enum TileType
     Wall,
     OpenDoor,
     ClosedDoor,
-    Unused
+    Unused,
+    Void
 }
 
 // for convenience so we can reference neighbor to the east as neighbors[Dir.E]
