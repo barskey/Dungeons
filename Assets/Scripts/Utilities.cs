@@ -11,6 +11,15 @@ public enum TileType
     Unused
 }
 
+// for convenience so we can reference neighbor to the east as neighbors[Dir.E]
+public enum Dir
+{
+    N, // 0
+    E, // 1
+    S, // 2
+    W  // 3
+}
+
 public enum RoomType
 {
     Dungeon,
@@ -26,6 +35,8 @@ public class Tile
     public TileType type = TileType.Unused;
     public Vector2Int coord;
     public int region = -1;
+    public Tile[] neighbors = new Tile[4];
+    public GameObject gameobj;
 }
 
 public class Room

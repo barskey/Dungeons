@@ -46,11 +46,9 @@ MonoBehaviour:
   levelWidth: 100
   levelHeight: 80
   room: {fileID: 1680013651619879247, guid: 9dc83e37ad6a04154b17266f6bf15baa, type: 3}
-  levelWall: {fileID: 8624528580691302770, guid: 8eb31112a18434fb497b7023b84af67c,
-    type: 3}
+  goTile: {fileID: 829062300549318863, guid: e7d4599ff36cb4dd8b4fe4e61b8925c1, type: 3}
   numRoomTries: 0
   roomMinSize: 3
   roomMaxSize: 13
   extraConnectorChance: 20
-  roomExtraSize: 0
   windingPercent: 0

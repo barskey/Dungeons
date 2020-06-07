@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\DungeonGenerator.cs" />
     <Compile Include="Assets\Scripts\RoomController.cs" />
+    <Compile Include="Assets\Scripts\TileController.cs" />
+    <Compile Include="Assets\Scripts\TileSet.cs" />
     <Compile Include="Assets\Scripts\Utilities.cs" />
     <Reference Include="UnityEngine">
       <HintPath>/Applications/Unity/Hub/Editor/2019.3.15f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

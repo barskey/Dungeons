@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66754fcda8cd24c7eb27c3f8ebf6b63d, type: 3}
+  m_Name: Set_02
+  m_EditorClassIdentifier: 
+  setName: 
+  wall_LNW: {fileID: 4858603724635080666, guid: 179e223dfefcc4667a0fa60d600c17e3,
+    type: 3}
+  wall_NS: {fileID: -1273243830179989173, guid: 179e223dfefcc4667a0fa60d600c17e3,
+    type: 3}
+  wall_LNE: {fileID: 4858603724635080666, guid: 179e223dfefcc4667a0fa60d600c17e3,
+    type: 3}
+  wall_WE: {fileID: -2354580212798404413, guid: 179e223dfefcc4667a0fa60d600c17e3,
+    type: 3}
+  wall_LSW: {fileID: -272373240147563666, guid: 179e223dfefcc4667a0fa60d600c17e3,
+    type: 3}
+  wall_LSE: {fileID: -7335817709153668966, guid: 179e223dfefcc4667a0fa60d600c17e3,
+    type: 3}
+  wall_oCross: {fileID: -7380741177489364937, guid: 179e223dfefcc4667a0fa60d600c17e3,
+    type: 3}
+  wallT_TN: {fileID: -8870372030223932829, guid: 179e223dfefcc4667a0fa60d600c17e3,
+    type: 3}
+  wall_TW: {fileID: -781091563230276770, guid: 179e223dfefcc4667a0fa60d600c17e3, type: 3}
+  wall_TS: {fileID: 7119921668171802988, guid: 179e223dfefcc4667a0fa60d600c17e3, type: 3}
+  wall_TE: {fileID: 9099017697246732631, guid: 179e223dfefcc4667a0fa60d600c17e3, type: 3}
+  wall_Cross: {fileID: 4630485997094170102, guid: 179e223dfefcc4667a0fa60d600c17e3,
+    type: 3}
+  wall_iCross: {fileID: 5011799141528871791, guid: 179e223dfefcc4667a0fa60d600c17e3,
+    type: 3}
+  floor_NW: {fileID: 1381528510163962405, guid: 89ffd26ced9ef4fac812304f4164bf37,
+    type: 3}
+  floor_N: {fileID: 3407696822135043392, guid: 89ffd26ced9ef4fac812304f4164bf37, type: 3}
+  floor_NE: {fileID: 298876309034902563, guid: 89ffd26ced9ef4fac812304f4164bf37, type: 3}
+  floor_W: {fileID: -1657038677086625927, guid: 89ffd26ced9ef4fac812304f4164bf37,
+    type: 3}
+  floor_C: {fileID: -498786115923219060, guid: 89ffd26ced9ef4fac812304f4164bf37, type: 3}
+  floor_E: {fileID: 5762946219183476826, guid: 89ffd26ced9ef4fac812304f4164bf37, type: 3}
+  floor_SW: {fileID: 534776473976523647, guid: 89ffd26ced9ef4fac812304f4164bf37, type: 3}
+  floor_S: {fileID: 1488450051862096703, guid: 89ffd26ced9ef4fac812304f4164bf37, type: 3}
+  floor_SE: {fileID: -2326640580971484003, guid: 89ffd26ced9ef4fac812304f4164bf37,
+    type: 3}
+  floor_SN: {fileID: -2796213752557943756, guid: 89ffd26ced9ef4fac812304f4164bf37,
+    type: 3}
+  floor_SC: {fileID: 7290447840035754938, guid: 89ffd26ced9ef4fac812304f4164bf37,
+    type: 3}
+  floor_SS: {fileID: 5103267866997794584, guid: 89ffd26ced9ef4fac812304f4164bf37,
+    type: 3}
+  floor_SF: {fileID: 3392086541811107891, guid: 89ffd26ced9ef4fac812304f4164bf37,
+    type: 3}
