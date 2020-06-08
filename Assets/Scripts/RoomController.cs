@@ -32,8 +32,8 @@ public class RoomController : MonoBehaviour
         {
             Vector3 coord = new Vector3(tile.coord.x, tile.coord.y);
             //Debug.Log("Creating tile at " + coord);
-            var go = Instantiate(floorTiles[0], transform, false);
-            go.transform.Translate(coord, Space.Self);
+            //var go = Instantiate(floorTiles[0], transform, false);
+            //go.transform.Translate(coord, Space.Self);
         }
     }
 

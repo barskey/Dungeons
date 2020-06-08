@@ -63,3 +63,11 @@ MonoBehaviour:
     type: 3}
   floorS_4: {fileID: 3392086541811107891, guid: 89ffd26ced9ef4fac812304f4164bf37,
     type: 3}
+  doorOpen: {fileID: -4756335130094519594, guid: fbcaad8d2cd14409590c7f208c53ecf0,
+    type: 3}
+  doorClosed: {fileID: -8941794205797320855, guid: 6f8055bccd711493a89655e08724aba4,
+    type: 3}
+  doorLockedOpen: {fileID: -314240632682936551, guid: fbcaad8d2cd14409590c7f208c53ecf0,
+    type: 3}
+  doorLockedClosed: {fileID: 4223693291354362163, guid: 6f8055bccd711493a89655e08724aba4,
+    type: 3}

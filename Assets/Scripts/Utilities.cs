@@ -51,7 +51,18 @@ public class Room
 
 public class Utilities
 {
-    public static Vector2Int[] directions = new Vector2Int[] { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left };
+    public static Vector2Int[] directions = new Vector2Int[] {
+        Vector2Int.up,
+        Vector2Int.right,
+        Vector2Int.down,
+        Vector2Int.left
+    };
+    public static Vector2Int[] diagonals = new Vector2Int[] {
+        Vector2Int.up + Vector2Int.left,
+        Vector2Int.up + Vector2Int.right,
+        Vector2Int.down + Vector2Int.left,
+        Vector2Int.down + Vector2Int.right
+    };
 
     // returns true if random int chosen between 1 and chance was 1
     public static bool OneIn(int chance)

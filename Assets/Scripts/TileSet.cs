@@ -37,4 +37,9 @@ public class TileSet : ScriptableObject
     public Sprite floorS_E;
     public Sprite floorS_4;
 
+    public Sprite doorOpen;
+    public Sprite doorClosed;
+    public Sprite doorLockedOpen;
+    public Sprite doorLockedClosed;
+
 }

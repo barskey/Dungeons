@@ -43,11 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968b9f4e760d647169333586da84ad05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelWidth: 100
-  levelHeight: 80
+  levelWidth: 101
+  levelHeight: 79
   room: {fileID: 1680013651619879247, guid: 9dc83e37ad6a04154b17266f6bf15baa, type: 3}
-  goTile: {fileID: 829062300549318863, guid: e7d4599ff36cb4dd8b4fe4e61b8925c1, type: 3}
-  numRoomTries: 0
+  floorTile: {fileID: 8624528580691302770, guid: 21155a294926d4fedadce6579cfb5e5a,
+    type: 3}
+  wallTile: {fileID: 8624528580691302770, guid: 8eb31112a18434fb497b7023b84af67c,
+    type: 3}
+  doorTile: {fileID: 7571423140543077286, guid: 16987c9563e814ab8ae9ed71916fef46,
+    type: 3}
+  numRoomTries: 100
   roomMinSize: 3
   roomMaxSize: 13
   extraConnectorChance: 20

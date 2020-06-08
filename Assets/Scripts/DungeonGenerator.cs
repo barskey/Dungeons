@@ -37,7 +37,9 @@ public class DungeonGenerator : MonoBehaviour
     public int levelHeight = 81;
 
     public GameObject room;
-    public GameObject goTile;
+    public GameObject floorTile;
+    public GameObject wallTile;
+    public GameObject doorTile;
     public int numRoomTries = 100; // how many times to attempt to add a room -> more attempts should result in more rooms
     public int roomMinSize = 3; // must be odd
     public int roomMaxSize = 13; // must be odd
@@ -81,21 +83,7 @@ public class DungeonGenerator : MonoBehaviour
                 {
                     coord = new Vector2Int(x, y)
                 };
-                if (y == 0 || y == levelHeight - 1)
-                {
-                    tile.type = TileType.Wall;
-                    dungeonTiles[x, y] = tile;
-                }
-                else if (x == 0 || x == levelWidth - 1) 
-                {
-                    tile.type = TileType.Wall;
-                    dungeonTiles[x, y] = tile;
-                }
-                else
-                {
-                    tile.type = TileType.Wall;
-                    dungeonTiles[x, y] = tile;
-                }
+                dungeonTiles[x, y] = tile;
                 regions[x, y] = -1;
             }
         }
@@ -138,7 +126,7 @@ public class DungeonGenerator : MonoBehaviour
             for (var x = 1; x < levelWidth; x += 2)
             {
                 var pos = new Vector2Int(x, y);
-                if (dungeonTiles[x, y].type != TileType.Wall) continue;
+                if (dungeonTiles[x, y].type != TileType.Unused) continue;
 
                 //Debug.Log("growMaze:" + pos);
                 GrowMaze(pos);
@@ -157,7 +145,7 @@ public class DungeonGenerator : MonoBehaviour
         var deadendTime = Time.realtimeSinceStartup - connectTime - mazeTime - roomTime - timeStart;
         Debug.Log("RemoveDeadEnds completed in " + deadendTime + "s.");
 
-        CreateGameObjects();
+        FinishTiles();
 
         var goTime = Time.realtimeSinceStartup - deadendTime - connectTime - mazeTime - roomTime - timeStart;
         Debug.Log("Gameobjects completed in " + goTime + "s.");
@@ -273,7 +261,7 @@ public class DungeonGenerator : MonoBehaviour
         foreach (var tile in dungeonTiles)
         {
             // can't already be part of a region
-            if (dungeonTiles[tile.coord.x, tile.coord.y].type != TileType.Wall) continue;
+            if (dungeonTiles[tile.coord.x, tile.coord.y].type != TileType.Unused) continue;
 
             HashSet<int> _regions = new HashSet<int>();
             foreach (var dir in Utilities.directions)
@@ -412,54 +400,78 @@ public class DungeonGenerator : MonoBehaviour
                 if (exits != 1) continue;
 
                 done = false;
-                tile.type = TileType.Wall;
+                tile.type = TileType.Unused;
                 //Debug.Log("Removed dead end!");
             }
         }
     }
 
-    private void CreateGameObjects()
+    private void FinishTiles()
     {
         foreach (var tile in dungeonTiles)
         {
-            GameObject go;
+            GameObject go = null;
             // set this tile's neighbors
+            bool adjacentFloor = false;
             for (int i = 0; i < Utilities.directions.Count(); i++)
             {
                 Tile neighbor;
                 var neighborCoord = tile.coord + Utilities.directions[i];
+                // check if out of bounds
                 if (neighborCoord.x < 0 || neighborCoord.x >= levelWidth || neighborCoord.y < 0 || neighborCoord.y >= levelHeight)
                 {
                     neighbor = new Tile { type = TileType.Void };
                 }
-                else
+                else // set neighbor tile
                 {
                     neighbor = dungeonTiles[neighborCoord.x, neighborCoord.y];
+                    if (neighbor.type == TileType.Floor) adjacentFloor = true;
                 }
                 tile.neighbors[i] = neighbor;
+            }
+            // also check diagonals for determining tile type
+            foreach (var diag in Utilities.diagonals)
+            {
+                var diagCoord = tile.coord + diag;
+                if (diagCoord.x < 0 || diagCoord.x >= levelWidth || diagCoord.y < 0 || diagCoord.y >= levelHeight) continue;
+
+                if (dungeonTiles[diagCoord.x, diagCoord.y].type == TileType.Floor) adjacentFloor = true;
+            }
+
+            // set tile to wall or void if it is still unused
+            if (tile.type == TileType.Unused)
+            {
+                tile.type = adjacentFloor ? TileType.Wall : TileType.Void;
             }
 
             switch (tile.type)
             {
                 case TileType.Floor:
-                    go = goTile;
+                    go = floorTile;
                     break;
                 case TileType.OpenDoor:
-                    go = goTile;
+                    go = doorTile;
                     break;
                 case TileType.ClosedDoor:
-                    go = goTile;
+                    go = doorTile;
                     break;
                 case TileType.Wall:
-                    go = goTile;
+                    go = wallTile;
+                    break;
+                case TileType.Void:
+                    // TODO do we need gameobject for void tiles?
                     break;
                 default:
-                    go = goTile;
+                    // TODO do we need anything for default?
                     break;
             }
-            tile.gameobj = Instantiate(go, new Vector3(tile.coord.x, tile.coord.y), Quaternion.identity, transform);
-            tile.gameobj.GetComponent<TileController>().neighbors = tile.neighbors;
-            tile.gameobj.GetComponent<TileController>().type = tile.type;
+            if (go != null)
+            {
+                tile.gameobj = Instantiate(go, new Vector3(tile.coord.x, tile.coord.y), Quaternion.identity, transform);
+                tile.gameobj.GetComponent<TileController>().neighbors = tile.neighbors;
+                tile.gameobj.GetComponent<TileController>().type = tile.type;
+                tile.gameobj.GetComponent<TileController>().coord = tile.coord;
+            }
         }
     }
 
@@ -482,7 +494,7 @@ public class DungeonGenerator : MonoBehaviour
 
         // Destination must not be unused.
         Vector2Int openPos = pos + direction * 2;
-        return dungeonTiles[openPos.x, openPos.y].type == TileType.Wall;
+        return dungeonTiles[openPos.x, openPos.y].type == TileType.Unused;
     }
 
     private void StartRegion()
@@ -494,8 +506,8 @@ public class DungeonGenerator : MonoBehaviour
     {
         //Debug.Log("Carving:" + pos);
         dungeonTiles[pos.x, pos.y].type = type;
-        regions[pos.x, pos.y] = currentRegion;
         dungeonTiles[pos.x, pos.y].region = currentRegion;
+        regions[pos.x, pos.y] = currentRegion;
         // debug: instantiate tile so we cal see
         //Instantiate(levelWall, new Vector3(pos.x, pos.y), Quaternion.identity, transform);
     }
