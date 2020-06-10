@@ -6,6 +6,9 @@ public class TileSet : ScriptableObject
     public string setName;
 
     public Sprite[] wallSet = new Sprite[16];
+    public Sprite[] floorSet = new Sprite[16];
+    public Sprite[] doorSetOpen = new Sprite[8];
+    public Sprite[] doorSetClosed = new Sprite[8];
 
     public Sprite wall_LNW;
     public Sprite wall_NS;
@@ -38,10 +41,5 @@ public class TileSet : ScriptableObject
     public Sprite floorS_WE;
     public Sprite floorS_E;
     public Sprite floorS_4;
-
-    public Sprite doorOpen;
-    public Sprite doorClosed;
-    public Sprite doorLockedOpen;
-    public Sprite doorLockedClosed;
 
 }
