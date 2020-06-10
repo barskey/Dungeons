@@ -39,7 +39,7 @@ public class WallController : TileController
         // 1100 : SW
         // 1101 : TS
         // 1110 : TW
-        // 1111 : +
+        // 1111 : O+
         // load sprites in this order
         wallSprites[0] = new SpriteData(tileSet.wall_Cross);
         wallSprites[1] = new SpriteData(tileSet.wall_iCross);

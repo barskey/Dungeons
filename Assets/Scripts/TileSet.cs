@@ -5,6 +5,8 @@ public class TileSet : ScriptableObject
 {
     public string setName;
 
+    public Sprite[] wallSet = new Sprite[16];
+
     public Sprite wall_LNW;
     public Sprite wall_NS;
     public Sprite wall_LNE;
