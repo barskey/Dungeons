@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66754fcda8cd24c7eb27c3f8ebf6b63d, type: 3}
+  m_Name: Data
+  m_EditorClassIdentifier: 
+  setName: 
+  wallSet:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  floorSet:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  doorSetOpen:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  doorSetClosed:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  wall_LNW: {fileID: 0}
+  wall_NS: {fileID: 0}
+  wall_LNE: {fileID: 0}
+  wall_WE: {fileID: 0}
+  wall_LSW: {fileID: 0}
+  wall_LSE: {fileID: 0}
+  wall_oCross: {fileID: 0}
+  wall_TN: {fileID: 0}
+  wall_TW: {fileID: 0}
+  wall_TS: {fileID: 0}
+  wall_TE: {fileID: 0}
+  wall_Cross: {fileID: 0}
+  wall_iCross: {fileID: 0}
+  floor_NW: {fileID: 0}
+  floor_N: {fileID: 0}
+  floor_NE: {fileID: 0}
+  floor_W: {fileID: 0}
+  floor_C: {fileID: 0}
+  floor_E: {fileID: 0}
+  floor_SW: {fileID: 0}
+  floor_S: {fileID: 0}
+  floor_SE: {fileID: 0}
+  floorS_N: {fileID: 0}
+  floorS_NS: {fileID: 0}
+  floorS_S: {fileID: 0}
+  floorS_W: {fileID: 0}
+  floorS_WE: {fileID: 0}
+  floorS_E: {fileID: 0}
+  floorS_4: {fileID: 0}

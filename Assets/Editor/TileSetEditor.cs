@@ -7,6 +7,10 @@ using UnityEngine;
 public class TileSetEditor : Editor
 {
     float thumbnailSize = 42f;
+    int wallIndex, floorIndex, doorIndex;
+    Sprite[] sprites;
+    string[] spriteNames;
+    string selectedWall;
 
     //TileSet tileset = (TileSet);
     public override void OnInspectorGUI()
@@ -14,6 +18,14 @@ public class TileSetEditor : Editor
         //base.OnInspectorGUI();
 
         TileSet tileset = (TileSet)target;
+        Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites");
+        var spriteNames = new List<string>();
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            var name = sprites[i].name.Split('_');
+            if (!spriteNames.Contains(name[0])) spriteNames.Add(name[0]);
+        }
+
 
         //----- Wall Sprites -----//
         // Sprites will get stored in this order
@@ -67,6 +79,8 @@ public class TileSetEditor : Editor
         GUILayout.Space(thumbnailSize);
         tileset.wallSet[8] = (Sprite)EditorGUILayout.ObjectField(tileset.wallSet[8], typeof(Sprite), false, GUILayout.Width(thumbnailSize), GUILayout.Height(thumbnailSize));
         EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.LabelField("Open Sprite:", GUILayout.Width(120f));
 
         GUILayout.Space(20f);
 
@@ -126,17 +140,6 @@ public class TileSetEditor : Editor
 
         GUILayout.Space(20f);
 
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Floor Sprite Name:", GUILayout.Width(120f));
-        var floorSpriteName = EditorGUILayout.TextField("", GUILayout.Width(60f));
-        if (GUILayout.Button("Import from Sprite"))
-        {
-            Resources.Load<Sprite>("Sprites/" + floorSpriteName);
-        }
-        EditorGUILayout.EndHorizontal();
-
-        GUILayout.Space(20f);
-
         //----- Door Sprites -----//
         EditorGUILayout.LabelField("Door Tiles:", EditorStyles.boldLabel);
         
@@ -191,31 +194,6 @@ public class TileSetEditor : Editor
         GUILayout.Space(10f);
         tileset.doorSetClosed[7] = (Sprite)EditorGUILayout.ObjectField(tileset.doorSetClosed[7], typeof(Sprite), false, GUILayout.Width(thumbnailSize), GUILayout.Height(thumbnailSize));
         tileset.doorSetOpen[7] = (Sprite)EditorGUILayout.ObjectField(tileset.doorSetOpen[7], typeof(Sprite), false, GUILayout.Width(thumbnailSize), GUILayout.Height(thumbnailSize));
-        EditorGUILayout.EndHorizontal();
-
-        GUILayout.Space(20f);
-
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Closed Sprite Name:", GUILayout.Width(120f));
-        var closedSpriteName = EditorGUILayout.TextField("", GUILayout.Width(60f));
-        if (GUILayout.Button("Import from Sprite"))
-        {
-            Resources.Load<Sprite>("Sprites/" + closedSpriteName);
-        }
-        EditorGUILayout.EndHorizontal();
-
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Open Sprite Name:", GUILayout.Width(120f));
-        var openSpriteName = EditorGUILayout.TextField("", GUILayout.Width(60f));
-        if (GUILayout.Button("Import from Sprite"))
-        {
-            Resources.Load<Sprite>("Sprites/" + openSpriteName);
-            var spriteList = Resources.FindObjectsOfTypeAll<Sprite>();
-            foreach (var item in spriteList)
-            {
-                Debug.Log(item.name);
-            }
-        }
         EditorGUILayout.EndHorizontal();
     }
 }

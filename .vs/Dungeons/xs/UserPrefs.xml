@@ -1,14 +1,16 @@
 ﻿<Properties StartupConfiguration="{023A3686-E924-90EE-320B-0AAA778361B7}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/TileSetEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/CustomWindow.cs">
     <Files>
       <File FileName="Assets/Scripts/DungeonGenerator.cs" Line="465" Column="60" />
-      <File FileName="Assets/Scripts/Utilities.cs" />
+      <File FileName="Assets/Scripts/Utilities.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/TileController.cs" Line="14" Column="29" />
-      <File FileName="Assets/Editor/TileSetEditor.cs" Line="212" Column="65" />
-      <File FileName="Assets/Scripts/FloorController.cs" Line="44" Column="1" />
+      <File FileName="Assets/Editor/TileSetEditor.cs" Line="142" Column="1" />
+      <File FileName="Assets/Scripts/FloorController.cs" />
       <File FileName="Assets/Scripts/RoomController.cs" />
       <File FileName="Assets/Scripts/DoorController.cs" />
       <File FileName="Assets/Scripts/TileSet.cs" Line="11" Column="51" />
+      <File FileName="Assets/Scripts/WallController.cs" Line="57" Column="59" />
+      <File FileName="Assets/Editor/CustomWindow.cs" Line="18" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -16,23 +18,18 @@
           <Node name="Dungeons" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Editor" expanded="True">
-                <Node name="TileSetEditor.cs" selected="True" />
+                <Node name="CustomWindow.cs" selected="True" />
               </Node>
               <Node name="Scripts" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.UnitTesting.TestPad">
-        <State name="__root__">
-          <Node name="Dungeons" expanded="True" selected="True" />
-        </State>
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="fb3afee0-cc23-4c2f-8217-4bc40b0a468e" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="72015c38-7199-4824-b59b-a5b6a6c526e5" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
