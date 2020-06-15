@@ -30,6 +30,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  wallName: Wall0
   floorSet:
   - {fileID: 0}
   - {fileID: 0}

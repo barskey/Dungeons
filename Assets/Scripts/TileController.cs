@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
+    [HideInInspector]
     public TileSet tileSet;
     public Vector2Int coord;
     public TileType type;
@@ -28,22 +29,16 @@ public class TileController : MonoBehaviour
     public virtual void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-
-        LoadSprites();
+        tileSet = FindObjectOfType<DungeonGenerator>().tileSet;
         Initialize();
     }
 
     public virtual void Initialize()
     {
-
+        SetSprites();
     }
 
-    public virtual void LoadSprites()
-    {
-
-    }
-
-    public virtual void SetSprite()
+    public virtual void SetSprites()
     {
 
     }

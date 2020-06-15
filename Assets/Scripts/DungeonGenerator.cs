@@ -37,6 +37,7 @@ public class DungeonGenerator : MonoBehaviour
     public int levelHeight = 81;
 
     public GameObject room;
+    public TileSet tileSet;
     public GameObject floorTile;
     public GameObject wallTile;
     public GameObject doorTile;

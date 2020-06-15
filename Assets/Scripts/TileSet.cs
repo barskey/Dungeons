@@ -5,41 +5,12 @@ public class TileSet : ScriptableObject
 {
     public string setName;
 
+    public string wallSetName = "Wall0";
     public Sprite[] wallSet = new Sprite[16];
+    public string floorSetName = "Floor0";
     public Sprite[] floorSet = new Sprite[16];
+    public string doorSetName = "Door0";
     public Sprite[] doorSetOpen = new Sprite[8];
     public Sprite[] doorSetClosed = new Sprite[8];
-
-    public Sprite wall_LNW;
-    public Sprite wall_NS;
-    public Sprite wall_LNE;
-    public Sprite wall_WE;
-    public Sprite wall_LSW;
-    public Sprite wall_LSE;
-    public Sprite wall_oCross;
-    public Sprite wall_TN;
-    public Sprite wall_TW;
-    public Sprite wall_TS;
-    public Sprite wall_TE;
-    public Sprite wall_Cross;
-    public Sprite wall_iCross;
-
-    public Sprite floor_NW;
-    public Sprite floor_N;
-    public Sprite floor_NE;
-    public Sprite floor_W;
-    public Sprite floor_C;
-    public Sprite floor_E;
-    public Sprite floor_SW;
-    public Sprite floor_S;
-    public Sprite floor_SE;
-
-    public Sprite floorS_N;
-    public Sprite floorS_NS;
-    public Sprite floorS_S;
-    public Sprite floorS_W;
-    public Sprite floorS_WE;
-    public Sprite floorS_E;
-    public Sprite floorS_4;
 
 }

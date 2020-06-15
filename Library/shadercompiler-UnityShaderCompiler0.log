@@ -1,4 +1,4 @@
-Base path: '/Volumes/Big Drive/Shared/Unity Installs/2019.3.15f1/Unity.app/Contents', plugins path '/Volumes/Big Drive/Shared/Unity Installs/2019.3.15f1/PlaybackEngines'
+Base path: '/Applications/Unity/Hub/Editor/2019.3.15f1/Unity.app/Contents', plugins path '/Applications/Unity/Hub/Editor/2019.3.15f1/Unity.app/Contents/PlaybackEngines'
 Cmd: initializeCompiler
 Cmd: preprocess
   insize=2439 outsize=823 ok=1
