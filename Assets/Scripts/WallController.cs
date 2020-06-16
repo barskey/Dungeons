@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class WallController : TileController
 {
+    private List<TileType> types = new List<TileType> { TileType.Wall, TileType.ClosedDoor, TileType.OpenDoor };
 
     public override void SetSprites()
     {
         base.SetSprites();
 
         // for brevity in conditionals
-        var n = neighbors[(int)Dir.N].type == TileType.Wall ? 8 : 0;
-        var e = neighbors[(int)Dir.E].type == TileType.Wall ? 4 : 0;
-        var s = neighbors[(int)Dir.S].type == TileType.Wall ? 2 : 0;
-        var w = neighbors[(int)Dir.W].type == TileType.Wall ? 1 : 0;
+        var n = types.Contains(neighbors[(int)Dir.N].type) ? 8 : 0;
+        var e = types.Contains(neighbors[(int)Dir.E].type) ? 4 : 0;
+        var s = types.Contains(neighbors[(int)Dir.S].type) ? 2 : 0;
+        var w = types.Contains(neighbors[(int)Dir.W].type) ? 1 : 0;
 
         var index = n + e + s + w;
         sr.sprite = tileSet.wallSet[index];

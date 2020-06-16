@@ -72,7 +72,7 @@ public class DungeonGenerator : MonoBehaviour
 
     }
 
-    private void InitializeLevel()
+    void InitializeLevel()
     {
         dungeonTiles = new Tile[levelWidth, levelHeight];
         regions = new int[levelWidth, levelHeight];
@@ -114,7 +114,7 @@ public class DungeonGenerator : MonoBehaviour
     ///
     /// The end result of this is a multiple-connected dungeon with rooms and lots
     /// of winding corridors.
-    public void Generate()
+    void Generate()
     {
         var timeStart = Time.realtimeSinceStartup;
         AddRooms();
@@ -153,7 +153,7 @@ public class DungeonGenerator : MonoBehaviour
 
     }
 
-    private void AddRooms()
+    void AddRooms()
     {
         List<Room> rooms = new List<Room>();
 
@@ -199,7 +199,7 @@ public class DungeonGenerator : MonoBehaviour
 
     /// Implementation of the "growing tree" algorithm from here:
     /// http://www.astrolog.org/labyrnth/algrithm.htm.
-    private void GrowMaze(Vector2Int start)
+    void GrowMaze(Vector2Int start)
     {
         List<Vector2Int> cells = new List<Vector2Int>();
         Vector2Int lastDir = Vector2Int.up; // TODO is this OK to set to up?
@@ -255,7 +255,7 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    private void ConnectRegions()
+    void ConnectRegions()
     {
         // find all the tiles that can connect two or more regions
         Dictionary<Vector2Int, HashSet<int>> connectorRegions = new Dictionary<Vector2Int, HashSet<int>>();
@@ -361,7 +361,7 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    private void AddJunction(Vector2Int pos)
+    void AddJunction(Vector2Int pos)
     {
         TileType type;
         if (Utilities.OneIn(4))
@@ -376,7 +376,7 @@ public class DungeonGenerator : MonoBehaviour
         //Debug.Log("Juction added at " + pos + " type " + type);
     }
 
-    private void RemoveDeadEnds()
+    void RemoveDeadEnds()
     {
         var done = false;
 
@@ -407,7 +407,7 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    private void FinishTiles()
+    void FinishTiles()
     {
         foreach (var tile in dungeonTiles)
         {
@@ -498,12 +498,12 @@ public class DungeonGenerator : MonoBehaviour
         return dungeonTiles[openPos.x, openPos.y].type == TileType.Unused;
     }
 
-    private void StartRegion()
+    void StartRegion()
     {
         currentRegion++;
     }
 
-    private void Carve(Vector2Int pos, TileType type = TileType.Floor)
+    void Carve(Vector2Int pos, TileType type = TileType.Floor)
     {
         //Debug.Log("Carving:" + pos);
         dungeonTiles[pos.x, pos.y].type = type;

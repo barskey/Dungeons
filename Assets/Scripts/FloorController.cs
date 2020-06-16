@@ -15,7 +15,7 @@ public class FloorController : TileController
         var s = neighbors[(int)Dir.S].type == TileType.Wall ? 2 : 0;
         var w = neighbors[(int)Dir.W].type == TileType.Wall ? 1 : 0;
         var index = n + e + s + w;
-        Debug.Log(tileSet.floorSet[index].name);
+
         sr.sprite = tileSet.floorSet[index];
     }
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Data
   m_EditorClassIdentifier: 
   setName: 
+  wallSetName: Wall15
   wallSet:
   - {fileID: 0}
   - {fileID: 0}
@@ -30,7 +31,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  wallName: Wall0
+  floorSetName: Floor12
   floorSet:
   - {fileID: 0}
   - {fileID: 0}
@@ -48,6 +49,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  doorSetName: Door1
   doorSetOpen:
   - {fileID: 0}
   - {fileID: 0}
@@ -66,32 +68,3 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  wall_LNW: {fileID: 0}
-  wall_NS: {fileID: 0}
-  wall_LNE: {fileID: 0}
-  wall_WE: {fileID: 0}
-  wall_LSW: {fileID: 0}
-  wall_LSE: {fileID: 0}
-  wall_oCross: {fileID: 0}
-  wall_TN: {fileID: 0}
-  wall_TW: {fileID: 0}
-  wall_TS: {fileID: 0}
-  wall_TE: {fileID: 0}
-  wall_Cross: {fileID: 0}
-  wall_iCross: {fileID: 0}
-  floor_NW: {fileID: 0}
-  floor_N: {fileID: 0}
-  floor_NE: {fileID: 0}
-  floor_W: {fileID: 0}
-  floor_C: {fileID: 0}
-  floor_E: {fileID: 0}
-  floor_SW: {fileID: 0}
-  floor_S: {fileID: 0}
-  floor_SE: {fileID: 0}
-  floorS_N: {fileID: 0}
-  floorS_NS: {fileID: 0}
-  floorS_S: {fileID: 0}
-  floorS_W: {fileID: 0}
-  floorS_WE: {fileID: 0}
-  floorS_E: {fileID: 0}
-  floorS_4: {fileID: 0}

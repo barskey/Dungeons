@@ -30,6 +30,7 @@ public class TileController : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         tileSet = FindObjectOfType<DungeonGenerator>().tileSet;
+        //Debug.Log(tileSet.wallSet[0].name);
         Initialize();
     }
 
