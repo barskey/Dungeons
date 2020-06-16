@@ -18,4 +18,18 @@ public class FloorController : TileController
 
         sr.sprite = tileSet.floorSet[index];
     }
+
+    private void Update()
+    {
+        var playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        var distToPlayer = transform.position - playerPos;
+        if (distToPlayer.magnitude > 4)
+        {
+            sr.color = Color.gray;
+        }
+        else
+        {
+            sr.color = Color.white;
+        }
+    }
 }
